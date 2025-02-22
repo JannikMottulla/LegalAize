@@ -1,0 +1,15 @@
+<svg width="140" height="140" xmlns="http://www.w3.org/2000/svg">
+  <!-- First rounded square (light cyan) -->
+  <rect
+    x="10" y="10"
+    width="100" height="100"
+    rx="20" ry="20"
+    fill="#7FFFFF" opacity="0.8" />
+
+  <!-- Second rounded square (purple), positioned to overlap more -->
+  <rect
+    x="25" y="25"
+    width="100" height="100"
+    rx="20" ry="20"
+    fill="#6A5ACD" opacity="0.8" />
+</svg>
