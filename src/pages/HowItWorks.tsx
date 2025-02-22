@@ -1,4 +1,3 @@
-import React from "react";
 import Steps from "../components/Steps";
 import { motion } from "framer-motion";
 import { Upload } from "lucide-react";

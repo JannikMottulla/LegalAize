@@ -41,7 +41,7 @@ export const ContractSummary = () => {
         </div>
       </div>
       <div className="flex-1 p-4 flex flex-col gap-4 overflow-y-auto bg-[#1A1B26]">
-        {/* <div className="p-4 rounded-lg border border-purple-300/10 backdrop-blur-md">
+        <div className="p-4 rounded-lg border border-purple-300/10 backdrop-blur-md">
           <div className="flex gap-2 items-start mb-3">
             <div className="p-1 rounded-full bg-purple-500/10 text-purple-400 mt-0.5">
               <Type className="w-4 h-4" />
@@ -53,7 +53,7 @@ export const ContractSummary = () => {
           <p className="text-md text-white/90 leading-relaxed">
             {contractSummary}
           </p>
-        </div> */}
+        </div>
         <div className="flex-1 space-y-4 overflow-y-auto">
           <h3 className="text-sm text-start font-medium text-purple-300/80 mb-2">
             Key Details

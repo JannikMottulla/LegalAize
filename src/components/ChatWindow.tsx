@@ -31,7 +31,7 @@ export const ChatWindow = () => {
   ]);
   const [input, setInput] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     if (!input.trim()) return;
 
