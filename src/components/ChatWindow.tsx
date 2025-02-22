@@ -6,7 +6,7 @@ export const ChatWindow = () => {
     {
       role: "ai",
       content:
-        "Hello! I am your AI assistant. I can scan your contracts for flaws or answer any kind of question you have regarding the content!",
+        "Hello! I am your AI assistant. Your upload was successful, your analysis will be ready in a few seconds. If you have any questions, feel free to ask!",
     },
     {
       role: "user",
@@ -17,16 +17,6 @@ export const ChatWindow = () => {
       role: "ai",
       content:
         "Sure! I can help you with that. Please upload your contract and I will analyze it for you.",
-    },
-    {
-      role: "ai",
-      content:
-        ". . .processing. . . your contract has been uploaded successfully! Let me analyze it for you.",
-    },
-    {
-      role: "ai",
-      content:
-        "Your contract has a high risk of ambiguous termination clauses that could lead to disputes. Would you like me to provide more details?",
     },
   ]);
   const [input, setInput] = useState("");
@@ -79,6 +69,7 @@ export const ChatWindow = () => {
           <input
             type="text"
             value={input}
+            disabled={true}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Ask any question about your contract..."
             className="w-full bg-[#2A2B36] text-white rounded-lg pl-4 pr-12 py-3 focus:outline-none focus:ring-2 focus:ring-[#7C3AED]"

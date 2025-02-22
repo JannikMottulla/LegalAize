@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="overflow-x-hidden">
       <nav
-        className={`fixed top-0 left-0 w-full z-50 p-4 md:bg-violet-950/90 `}
+        className={`fixed top-0 left-0 w-full z-50 p-4 md:bg-violet-950/90 text-white`}
       >
         <div className="max-w-7xl mx-auto flex justify-end items-center">
           <div className="flex md:hidden  cursor-pointer bg-violet-950/80 shadow-2xl text-white p-2 rounded-2xl">

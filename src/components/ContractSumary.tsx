@@ -32,7 +32,7 @@ const keyDetails: KeyDetail[] = [
 ];
 export const ContractSummary = () => {
   return (
-    <div className="flex flex-col flex-1 max-w-3xl h-full bg-[#1A1B26] rounded-lg overflow-hidden border border-gray-800">
+    <div className="flex flex-col flex-1 h-full bg-[#1A1B26] rounded-lg overflow-hidden border border-gray-800">
       <div className="p-4 border-b border-gray-800 flex items-center text-left gap-4">
         <FileText className="w-6 h-6 text-[#7C3AED]" />
         <div>
@@ -50,11 +50,11 @@ export const ContractSummary = () => {
               Contract Overview
             </p>
           </div>
-          <p className="text-md text-white/90 leading-relaxed">
+          <p className="text-md text-white/90 leading-relaxed text-left">
             {contractSummary}
           </p>
         </div>
-        <div className="flex-1 space-y-4 overflow-y-auto">
+        <div className="flex-1 space-y-4 overflow-y-auto md:hidden">
           <h3 className="text-sm text-start font-medium text-purple-300/80 mb-2">
             Key Details
           </h3>

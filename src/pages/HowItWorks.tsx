@@ -1,8 +1,15 @@
 import Steps from "../components/Steps";
 import { motion } from "framer-motion";
 import { Upload } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const HowItWorks = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    // Navigate to the '/app' route without reloading the page
+    navigate("/app");
+  };
   return (
     <div className="w-full flex flex-col items-center">
       <svg
@@ -41,6 +48,7 @@ const HowItWorks = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         className="mt-16 mb-8 px-6 py-3 bg-purple-500 text-white rounded-lg"
+        onClick={handleClick}
       >
         Upload your contract now <Upload className="w-5 h-5 inline" />
       </motion.button>

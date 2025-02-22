@@ -3,9 +3,15 @@ import Carousel from "../components/ComponentCarousel";
 import { ChatWindow } from "../components/ChatWindow";
 import { ContractAnalysis } from "../components/ContractAnalysis";
 import ContractSummary from "../components/ContractSumary";
-import { Upload } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function HeroSection() {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    // Navigate to the '/app' route without reloading the page
+    navigate("/app");
+  };
   return (
     <div className="w-full flex flex-col text-center items-center bg-violet-950 text-white">
       <svg
@@ -65,15 +71,22 @@ export default function HeroSection() {
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.3, delay: 1 }}
+          onClick={handleClick}
         >
-          Upload your first contract <Upload className="w-5 h-5 inline" />
+          Get started with your first contract{" "}
         </motion.button>
       </div>
 
       <div className="w-full flex flex-col justify-center items-center">
-        <div className="h-[60vh] hidden md:flex mx-5 p-4 max-w-7xl gap-4 bg-[#170d2c] z-30 rounded-md">
-          <ChatWindow />
-          <div className="flex flex-col flex-1">
+        <div className=" hidden md:flex md:flex-col mx-5 p-4 max-w-7xl gap-4 bg-[#170d2c] z-30 rounded-md">
+          <div className="flex-1">
+            <ContractSummary />
+          </div>
+
+          <div className="flex flex-1 gap-4">
+            <div className="flex-1 flex flex-col">
+              <ChatWindow />
+            </div>
             <ContractAnalysis />
           </div>
         </div>
