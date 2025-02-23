@@ -1,16 +1,11 @@
-import React from "react";
-import { cn } from "../lib/utils";
+import { cn } from "./lib/utils";
+import { Outlet } from "react-router-dom";
 
-interface LayoutProps {
-  children: React.ReactNode;
-  className?: string;
-}
-
-export function Layout({ children, className }: LayoutProps) {
+const ApplicationLayout = () => {
   return (
-    <div className="min-h-screen bg-[hsl(271_81%_14%)] text-white">
+    <div className="min-h-screen bg-[#1A1F2C] text-white">
       <div className="flex min-h-screen flex-col">
-        <header className="border-b border-[hsl(271_81%_24%)]">
+        <header className="border-b border-[#2D3348]">
           <div className="container flex h-16 items-center px-4 sm:px-8">
             <nav className="flex flex-1 items-center space-x-6">
               <span className="text-xl font-bold tracking-tight">
@@ -20,10 +15,12 @@ export function Layout({ children, className }: LayoutProps) {
             </nav>
           </div>
         </header>
-        <main className={cn("flex-1 px-4 py-6 sm:px-8 sm:py-12", className)}>
-          {children}
+        <main className={cn("flex-1")}>
+          <Outlet />
         </main>
       </div>
     </div>
   );
-}
+};
+
+export default ApplicationLayout;

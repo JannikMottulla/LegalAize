@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
-import Carousel from "../components/ComponentCarousel";
-import { ChatWindow } from "../components/ChatWindow";
-import { ContractAnalysis } from "../components/ContractAnalysis";
-import ContractSummary from "../components/ContractSumary";
+
 import { useNavigate } from "react-router-dom";
+import ContractSummary from "../Components/ContractSumary";
+import { ChatWindow } from "../Components/ChatWindow";
+import ContractAnalysis from "../Components/ContractAnalysis";
+import Carousel from "../Components/ComponentCarousel";
 
 export default function HeroSection() {
   const navigate = useNavigate();
