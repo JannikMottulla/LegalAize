@@ -3,7 +3,7 @@ import useContractUploadStore from "../../../stores/ContractUploadStore";
 
 const ContractAnalysis = () => {
   const { analizedContract } = useContractUploadStore();
-  if (!analizedContract) window.location.href = "/app/#/app";
+  if (!analizedContract) window.location.href = "#/app";
   const {
     summary,
     key_points,

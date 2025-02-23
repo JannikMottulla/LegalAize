@@ -64,7 +64,7 @@ const processAnswer = (answer: string) => {
     const cleanedMessage = answer.split("```json")[1].split("```")[0];
     const parsedData = JSON.parse(cleanedMessage!);
     setAnalizedContract(parsedData);
-    window.location.href = "/app/#/app/free-contract-analysis";
+    window.location.href = "#/app/free-contract-analysis";
   } catch (jsonError) {
     console.error("Error parsing JSON response:", jsonError);
   }
