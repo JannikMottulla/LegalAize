@@ -16,9 +16,14 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      VITE_OPENAI_API_KEY: ${{ secrets.VITE_OPENAI_API_KEY }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Print GitHub Environment Variables
+        run: env | sort
 
       - name: Setup Node.js (if using a frontend project)
         uses: actions/setup-node@v4
@@ -52,6 +57,9 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name: Access secret variable
+        run: echo "My secret is ${{ secrets.VITE_OPENAI_API_KEY }}"
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
