@@ -1,4 +1,3 @@
-import { Globe } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -10,45 +9,23 @@ import { Button } from "../../../components/ui/button";
 import useContractUploadStore from "../../../stores/ContractUploadStore";
 
 const JurisdictionSelection = () => {
-  const {
-    jurisdiction,
-    setJurisdiction,
-    file,
-    setAnalyzing,
-    analyzing,
-    setAnalyzingComplete,
-    setProgress,
-    progress,
-
-    analyzeContract,
-  } = useContractUploadStore();
+  const { jurisdiction, setJurisdiction, analyzeContract, analyzing } =
+    useContractUploadStore();
 
   const startAnalysis = () => {
-    if (!file || !jurisdiction) return;
     analyzeContract();
-    let progress = 0;
-    const interval = setInterval(() => {
-      progress += 5;
-      setProgress(progress);
-      if (progress >= 100) {
-        clearInterval(interval);
-        setAnalyzing(false);
-        setAnalyzingComplete(true);
-      }
-    }, 200);
   };
 
   return (
     <div className="space-y-4 animate-slideUp">
       <div className="text-center space-y-6">
-        <div className="w-16 h-16 mx-auto bg-[#2D3348] rounded-full flex items-center justify-center">
-          <Globe className="w-8 h-8 text-[#D6BCFA]" />
+        <div>
+          <h2 className="text-2xl font-semibold">Select Jurisdiction</h2>
+          <p className="text-[#7E69AB]">
+            Choose the country whose laws you want to use for the contract
+            analysis
+          </p>
         </div>
-        <h2 className="text-2xl font-semibold">Select Jurisdiction</h2>
-        <p className="text-[#7E69AB]">
-          Choose the country whose laws you want to use for the contract
-          analysis
-        </p>
 
         <Select onValueChange={setJurisdiction} value={jurisdiction}>
           <SelectTrigger className="w-full max-w-xs mx-auto">
@@ -65,16 +42,10 @@ const JurisdictionSelection = () => {
 
         <Button
           onClick={startAnalysis}
-          disabled={!jurisdiction || analyzing}
+          disabled={!jurisdiction || analyzing} // Disable while analyzing
           className="w-full max-w-xs bg-[#D6BCFA] text-[#2D3348]"
         >
-          {analyzing ? (
-            <div className="space-x-2 ">
-              <span>Analyzing... {progress}%</span>
-            </div>
-          ) : (
-            "Start Analysis"
-          )}
+          {analyzing ? "Analyzing your contract..." : "Start Analysis"}
         </Button>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import { FileText } from "lucide-react";
 import useContractUploadStore from "../../../stores/ContractUploadStore";
+import { cn } from "../../../lib/utils";
 
 const ContractAnalysis = () => {
   const { analizedContract } = useContractUploadStore();
@@ -7,8 +8,8 @@ const ContractAnalysis = () => {
   const {
     summary,
     key_points,
-    // issues,
-    // missing_clauses,
+    issues,
+    recommendation,
     // compliance,
     risk_rating,
   } = analizedContract!;
@@ -31,7 +32,9 @@ const ContractAnalysis = () => {
           <h4 className="text-[#c4b2ff] mb-3 text-lg font-medium">
             Risk Rating
           </h4>
-          <p className="text-lg font-semibold text-white">{risk_rating} / 10</p>
+          <p className="text-lg text-center font-semibold text-white">
+            {risk_rating} / 10
+          </p>
         </div>
       </div>
 
@@ -42,10 +45,12 @@ const ContractAnalysis = () => {
             Key Points
           </h4>
           <ul className="space-y-3 text-sm text-white">
-            {key_points.map((point, index) => (
+            {Object.entries(key_points).map(([topic, data], index) => (
               <li key={index} className="flex gap-2">
-                <div className="min-w-2 min-h- rounded-full bg-[#b29df8]" />
-                <span>{point}</span>
+                <div className="min-w-2 min-h-2 rounded-full bg-[#b29df8]" />
+                <span>
+                  <strong>{topic}:</strong> {data}
+                </span>
               </li>
             ))}
           </ul>
@@ -55,20 +60,27 @@ const ContractAnalysis = () => {
           <h4 className="text-[#c4b2ff] mb-3 text-lg font-medium">
             Risk Assessment
           </h4>
-          <div className="space-y-3 text-sm text-white">
-            <p className="flex items-center space-x-2">
-              <span className="w-3 h-3 rounded-full bg-green-500"></span>
-              <span>Low risk on payment terms</span>
-            </p>
-            <p className="flex items-center space-x-2">
-              <span className="w-3 h-3 rounded-full bg-yellow-500"></span>
-              <span>Medium risk on liability clauses</span>
-            </p>
-            <p className="flex items-center space-x-2">
-              <span className="w-3 h-3 rounded-full bg-red-500"></span>
-              <span>High risk on termination conditions</span>
-            </p>
-          </div>
+          <ul className="space-y-3 text-sm text-white">
+            {issues.map((issue, index) => (
+              <li key={index} className="flex gap-2">
+                <div
+                  className={cn(
+                    "min-w-2 min-h-2 rounded-full",
+                    issue.risk_level === "low"
+                      ? "bg-green-500"
+                      : issue.risk_level === "medium"
+                      ? "bg-yellow-500"
+                      : issue.risk_level === "high"
+                      ? "bg-red-500"
+                      : ""
+                  )}
+                />
+                <span>
+                  <strong>{issue.clause}:</strong> {issue.problem}
+                </span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
 
@@ -77,12 +89,7 @@ const ContractAnalysis = () => {
         <h4 className="text-[#c4b2ff] mb-3 text-lg font-medium">
           Recommendations
         </h4>
-        <p className="text-sm text-white leading-relaxed">
-          We recommend reviewing the termination clause and liability sections.
-          Consider adding more specific language around dispute resolution and
-          intellectual property rights. The payment terms are well-structured
-          but could benefit from more detailed milestone definitions.
-        </p>
+        <p className="text-sm text-white leading-relaxed">{recommendation}</p>
       </div>
     </div>
   );

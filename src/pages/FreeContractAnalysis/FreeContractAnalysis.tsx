@@ -13,7 +13,7 @@ const FreeContractAnalysis = () => {
         </header>
         <Button className="w-full p-8 text-md bg-[#D6BCFA] text-[#2D3348]">
           <span className="max-w-sm text-wrap">
-            Get your full analysis and live chat for 2,99$
+            Get your full analysis and live chat for 4,99$
           </span>
         </Button>
         <ContractAnalysis />

@@ -5,16 +5,24 @@ import { InitialAnalysis } from "../AIPrompts/InitialAnalysis";
 
 type ContractAnalysis = {
   summary: string;
-  key_points: string[];
+  key_points: Record<string, string>;
   issues: Issue[];
-  missing_clauses: string[];
-  compliance: "yes" | "no";
-  risk_rating: string | number;
+  missing_clauses: MissingClause[];
+  compliance: string;
+  risk_rating: string;
+  recommendation: string;
 };
 
 type Issue = {
   clause: string;
-  error: string;
+  problem: string;
+  sureness_score: number;
+  risk_level: "low" | "medium" | "high";
+};
+
+type MissingClause = {
+  clause: string;
+  sureness_score: number;
 };
 
 interface ContractUploadProperties {
@@ -64,7 +72,6 @@ const processAnswer = (answer: string) => {
     const cleanedMessage = answer.split("```json")[1].split("```")[0];
     const parsedData = JSON.parse(cleanedMessage!);
     setAnalizedContract(parsedData);
-    window.location.href = "#/app/free-contract-analysis";
   } catch (jsonError) {
     console.error("Error parsing JSON response:", jsonError);
   }
@@ -75,6 +82,8 @@ const analyzeContract = async (
   contractType: string,
   jurisdiction: string
 ) => {
+  const { setAnalyzing } = useContractUploadStore.getState();
+  setAnalyzing(true);
   const response = await openai.chat.completions.create({
     model: "gpt-4o",
     messages: [InitialAnalysis(contractContent, contractType, jurisdiction)],
@@ -120,6 +129,7 @@ const useContractUploadStore = create<ContractUploadState>((set, get) => ({
       await analyzeContract(contractContent, contractType, jurisdiction);
 
     set({ analyzing: false, analyzingComplete: true });
+    window.location.href = "#/app/free-contract-analysis";
   },
 }));
 

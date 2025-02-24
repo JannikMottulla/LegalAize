@@ -4,6 +4,7 @@ import Layout from "./Layout";
 import ApplicationLayout from "./ApplicationLayout";
 import ApplicationUploadPageTwo from "./pages/ApplicationUploadPage/ApplicationUploadPageTwo";
 import FreeContractAnalysis from "./pages/FreeContractAnalysis/FreeContractAnalysis";
+import useContractUploadStore from "./stores/ContractUploadStore";
 
 const router = createHashRouter([
   {
@@ -24,6 +25,11 @@ const router = createHashRouter([
       { index: true, element: <ApplicationUploadPageTwo /> },
       {
         path: "free-contract-analysis",
+        loader: () => {
+          const { analyzeContract } = useContractUploadStore.getState();
+          analyzeContract();
+          return null;
+        },
         element: <FreeContractAnalysis />,
       },
     ],
