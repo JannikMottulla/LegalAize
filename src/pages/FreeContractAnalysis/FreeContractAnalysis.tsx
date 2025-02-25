@@ -1,5 +1,6 @@
 import ContractAnalysis from "./Sections/ContractAnalysis";
 import { Button } from "../../components/ui/button";
+import PayPalButton from "./Components/PaypalButton";
 
 const FreeContractAnalysis = () => {
   return (
@@ -16,6 +17,7 @@ const FreeContractAnalysis = () => {
             Get your full analysis and live chat for 4,99$
           </span>
         </Button>
+        <PayPalButton />
         <ContractAnalysis />
       </div>
     </div>
