@@ -1,8 +1,12 @@
 import ContractAnalysis from "./Sections/ContractAnalysis";
 import { Button } from "../../components/ui/button";
 import PayPalButton from "./Components/PaypalButton";
+import useContractStore from "../../stores/ContractStore";
+import LargeLoadingSpinner from "./Components/LoadingSpinner";
 
 const FreeContractAnalysis = () => {
+  const { analyzing, analyzedContract } = useContractStore();
+
   return (
     <div className="bg-[#1A1F2C] text-[#D6BCFA] p-8 animate-fadeIn pt-12">
       <div className="max-w-3xl mx-auto space-y-4">
@@ -18,7 +22,8 @@ const FreeContractAnalysis = () => {
           </span>
         </Button>
         <PayPalButton />
-        <ContractAnalysis />
+        {analyzing && <LargeLoadingSpinner />}
+        {!analyzing && analyzedContract && <ContractAnalysis />}
       </div>
     </div>
   );

@@ -15,7 +15,7 @@ const PayPalButton: React.FC = () => {
         purchase_units: [
           {
             amount: {
-              value: "4.99",
+              value: "3.99",
             },
             description: "Full contract analysis and live chat",
           },

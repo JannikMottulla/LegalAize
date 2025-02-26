@@ -1,8 +1,8 @@
 import { Progress } from "../../../components/ui/progress";
-import useContractUploadStore from "../../../stores/ContractUploadStore";
+import { useUiControlStore } from "../../../stores/UiControlStore";
 
 function StepProgress() {
-  const { step } = useContractUploadStore();
+  const { step } = useUiControlStore();
   // For the progress bars, we can show 100% once we've moved past that step
   const progress1Value = step >= 2 ? 100 : 0;
   const progress2Value = step >= 3 ? 100 : 0;

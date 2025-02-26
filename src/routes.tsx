@@ -4,6 +4,7 @@ import Layout from "./Layout";
 import ApplicationLayout from "./ApplicationLayout";
 import ApplicationUploadPageTwo from "./pages/ApplicationUploadPage/ApplicationUploadPageTwo";
 import FreeContractAnalysis from "./pages/FreeContractAnalysis/FreeContractAnalysis";
+import useContractStore from "./stores/ContractStore";
 
 const router = createHashRouter([
   {
@@ -25,6 +26,18 @@ const router = createHashRouter([
       {
         path: "free-contract-analysis",
         element: <FreeContractAnalysis />,
+        loader: async () => {
+          const { file, jurisdiction, contractType, analyzeContract } =
+            useContractStore.getState();
+          if (!file || !jurisdiction || !contractType) {
+            //set Error
+            window.location.href = "#/app";
+          }
+          analyzeContract();
+
+          // debugger;
+          // await useContractStore.getState().analyzeContract();
+        },
       },
     ],
   },

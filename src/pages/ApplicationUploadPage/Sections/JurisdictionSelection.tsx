@@ -6,14 +6,16 @@ import {
   SelectValue,
 } from "../../../components/ui/select";
 import { Button } from "../../../components/ui/button";
-import useContractUploadStore from "../../../stores/ContractUploadStore";
+import useContractUploadStore from "../../../stores/ContractStore";
+import { useNavigate } from "react-router-dom";
 
 const JurisdictionSelection = () => {
-  const { jurisdiction, setJurisdiction, analyzeContract, analyzing } =
-    useContractUploadStore();
+  const navigate = useNavigate();
 
-  const startAnalysis = () => {
-    analyzeContract();
+  const { jurisdiction, setJurisdiction } = useContractUploadStore();
+
+  const goToFreeAnalysis = () => {
+    navigate("free-contract-analysis");
   };
 
   return (
@@ -41,11 +43,11 @@ const JurisdictionSelection = () => {
         </Select>
 
         <Button
-          onClick={startAnalysis}
-          disabled={!jurisdiction || analyzing} // Disable while analyzing
+          onClick={goToFreeAnalysis}
+          disabled={!jurisdiction} // Disable while analyzing
           className="w-full max-w-xs bg-[#D6BCFA] text-[#2D3348]"
         >
-          {analyzing ? "Analyzing your contract..." : "Start Analysis"}
+          Start Analysis
         </Button>
       </div>
     </div>

@@ -1,10 +1,9 @@
 import { FileText } from "lucide-react";
-import useContractUploadStore from "../../../stores/ContractUploadStore";
 import { cn } from "../../../lib/utils";
+import useContractStore from "../../../stores/ContractStore";
 
 const ContractAnalysis = () => {
-  const { analizedContract } = useContractUploadStore();
-  if (!analizedContract) window.location.href = "#/app";
+  const { analyzedContract } = useContractStore();
   const {
     summary,
     key_points,
@@ -12,7 +11,7 @@ const ContractAnalysis = () => {
     recommendation,
     // compliance,
     risk_rating,
-  } = analizedContract!;
+  } = analyzedContract!;
 
   return (
     <div className="space-y-6 animate-slideUp bg-[#23262F] p-6 rounded-lg shadow-lg border border-[#3C4458]">

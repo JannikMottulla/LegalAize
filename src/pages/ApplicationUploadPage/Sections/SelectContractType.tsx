@@ -1,15 +1,104 @@
 import { Button } from "../../../components/ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectValue,
-  SelectTrigger,
-} from "../../../components/ui/select";
-import useContractUploadStore from "../../../stores/ContractUploadStore";
+import useContractUploadStore from "../../../stores/ContractStore";
+import { useUiControlStore } from "../../../stores/UiControlStore";
+import { SearchableSelect } from "../../../components/SearchableSelect";
+
+const contractTypes = [
+  "Kaufvertrag",
+  "Mietvertrag",
+  "Leasingvertrag",
+  "Pachtvertrag",
+  "Darlehensvertrag",
+  "Schenkungsvertrag",
+  "Werkvertrag",
+  "Dienstvertrag",
+  "Arbeitsvertrag",
+  "Aufhebungsvertrag",
+  "Bauvertrag",
+  "Maklervertrag",
+  "Beförderungsvertrag",
+  "Transportvertrag",
+  "Speditionsvertrag",
+  "Versicherungsvertrag",
+  "Unterhaltsvertrag",
+  "Betreuungsvertrag",
+  "Beteiligungsvertrag",
+  "Vergleichsvertrag",
+  "Gesellschaftsvertrag",
+  "Geschäftsführervertrag",
+  "Franchisevertrag",
+  "Lizenzvertrag",
+  "Kooperationsvertrag",
+  "Geheimhaltungsvertrag",
+  "Vertriebsvertrag",
+  "Agenturvertrag",
+  "Kommissionsvertrag",
+  "Rahmenvertrag",
+  "Kreditvertrag",
+  "Bürgschaftsvertrag",
+  "Factoringvertrag",
+  "Treuhandvertrag",
+  "Ratenzahlungsvertrag",
+  "Hypothekenvertrag",
+  "Softwarelizenzvertrag",
+  "Hostingvertrag",
+  "Cloud-Service-Vertrag",
+  "Support- und Wartungsvertrag",
+  "IT-Outsourcing-Vertrag",
+  "Behandlungsvertrag",
+  "Pflegevertrag",
+  "Heimvertrag",
+  "Therapievertrag",
+  "Ehevertrag",
+  "Erbvertrag",
+  "Testamentsvollstreckervertrag",
+  "Auftragsvertrag",
+  "Sponsoringvertrag",
+  "Krankenversicherung",
+  "Haftpflichtversicherung",
+  "Lebensversicherung",
+  "Berufsunfähigkeitsversicherung",
+  "Rentenversicherung",
+  "Kfz-Versicherung",
+  "Hausratversicherung",
+  "Rechtsschutzversicherung",
+  "Unfallversicherung",
+  "Gebäudeversicherung",
+  "Reiseversicherung",
+  "Pflegeversicherung",
+  "Zahnzusatzversicherung",
+  "Tierversicherung",
+  "Photovoltaikversicherung",
+  "Cyberversicherung",
+  "D&O-Versicherung",
+  "Transportversicherung",
+  "Maschinenversicherung",
+  "Technische Versicherung",
+  "Bauleistungsversicherung",
+  "Betriebshaftpflichtversicherung",
+  "Produkthaftpflichtversicherung",
+  "Umwelthaftpflichtversicherung",
+  "Betriebsunterbrechungsversicherung",
+  "Kreditversicherung",
+  "Kautionsversicherung",
+  "Filmversicherung",
+  "Musikinstrumentenversicherung",
+  "Jagdhaftpflichtversicherung",
+  "Gewerbeversicherung",
+  "Elektronikversicherung",
+  "Mietnomadenversicherung",
+  "Versicherung gegen Elementarschäden",
+  "Flottenversicherung",
+  "Warenkreditversicherung",
+  "Glasversicherung",
+  "Handyversicherung",
+  "Wertsachenversicherung",
+];
 
 const SelectContractType = () => {
-  const { setContractType, contractType, setStep } = useContractUploadStore();
+  const { setContractType, contractType } = useContractUploadStore();
+  const { setStep } = useUiControlStore();
+
   return (
     <div className="w-full flex flex-col items-center space-y-4">
       <div className="">
@@ -18,19 +107,11 @@ const SelectContractType = () => {
           Chose the type of your Contract.
         </p>
       </div>
-      <Select onValueChange={setContractType} value={contractType}>
-        <SelectTrigger className="w-full max-w-xs mx-auto">
-          <SelectValue placeholder="Select contract type" />
-        </SelectTrigger>
-        <SelectContent className="bg-[#2D3348] border-[#D6BCFA] text-[#D6BCFA]">
-          <SelectItem value="Purchase Agreement">Purchase Agreement</SelectItem>
-          <SelectItem value="Service Contract">Service Contract</SelectItem>
-          <SelectItem value="Loan Agreement">Loan Agreement</SelectItem>
-          <SelectItem value="Partnership Agreement">
-            Partnership Agreement
-          </SelectItem>
-        </SelectContent>
-      </Select>
+      <SearchableSelect
+        options={contractTypes}
+        value={contractType}
+        onChange={setContractType}
+      />
       <p className="text-[#7E69AB] text-sm">
         Chose the type of your Contract. Cannot find your contract?{" "}
         <a>Click here</a>

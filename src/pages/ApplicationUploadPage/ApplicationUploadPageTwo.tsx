@@ -1,11 +1,11 @@
-import useContractUploadStore from "../../stores/ContractUploadStore";
 import UploadContract from "./Sections/UploadContract";
 import JurisdictionSelection from "./Sections/JurisdictionSelection";
 import StepProgress from "./Sections/StepProgress";
 import SelectContractType from "./Sections/SelectContractType";
+import { useUiControlStore } from "../../stores/UiControlStore";
 
 const ApplicationUploadPageTwo = () => {
-  const { step } = useContractUploadStore();
+  const { step } = useUiControlStore();
 
   return (
     <div className="bg-[#1A1F2C] text-[#D6BCFA] p-8 animate-fadeIn pt-12">

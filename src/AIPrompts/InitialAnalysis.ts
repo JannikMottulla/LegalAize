@@ -1,17 +1,12 @@
 import { ContractCheckLists } from "./ContractCheckLists";
-
-type ChatMessage = { role: "system" | "user" | "assistant"; content: string };
-
 export const InitialAnalysis = (
   contractContent: string,
   contractType: string,
   jurisdiction: string
-): ChatMessage => {
+): string => {
   const checkList =
     ContractCheckLists[contractType as keyof typeof ContractCheckLists];
-  return {
-    role: "system",
-    content: `
+  return `
 You are an experienced **contract lawyer from ${jurisdiction} (and therefore you answer ONLY in German)** with extensive expertise in contract law.  
 Your task is to analyze contracts **using a fixed and deterministic method** to ensure that **the biggest legal risks are consistently identified**.  
 
@@ -110,6 +105,5 @@ The analysis always follows this exact order:
 - **Determine an overall "risk_rating" based on the highest issue severity.**  
 - **Generate a structured summary of the contract that adapts to any contract type, covering its core purpose, key parties, and obligations.**  
 - **Provide a clear recommendation for further steps based on the analysis.**
-`,
-  };
+`;
 };

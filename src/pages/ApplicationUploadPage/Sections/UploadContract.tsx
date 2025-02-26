@@ -1,10 +1,12 @@
 import React from "react";
-import useContractUploadStore from "../../../stores/ContractUploadStore";
+import useContractUploadStore from "../../../stores/ContractStore";
 import { File, Upload } from "lucide-react";
 import { Button } from "../../../components/ui/button";
+import { useUiControlStore } from "../../../stores/UiControlStore";
 
 const UploadContract = () => {
-  const { file, setFile, setStep } = useContractUploadStore();
+  const { file, setFile } = useContractUploadStore();
+  const { setStep } = useUiControlStore();
 
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
